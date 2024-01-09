@@ -21,7 +21,7 @@
             <TextBlock.RenderTransform>
                 <RotateTransform x:Name="MoveTransform" />
             </TextBlock.RenderTransform>
-              <!-- Анимация текста. Перемещение вправо --> 
+              <!-- Анимация текста. Перемещение вправо -->
         </TextBlock>
 
 
