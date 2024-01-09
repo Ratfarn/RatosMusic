@@ -1,0 +1,31 @@
+﻿<Window x:Class="ProjectRatOS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectRatOS"
+        mc:Ignorable="d"
+        Title="RatOS" MinHeight="420" MaxHeight="420" MinWidth="750" MaxWidth="750" Closing="Window_Closing"
+        WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" MouseLeftButtonDown="DragMe">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="377*"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="BorPic" Background="Beige" CornerRadius="50" BorderBrush="Green" BorderThickness="1" Grid.RowSpan="2">
+            <Slider x:Name="MusicNameCount" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,113,0,0" Width="730" TickPlacement="BottomRight" TickFrequency="1"/>
+        </Border>
+        <Label Content="RatosMusic" HorizontalAlignment="Center" VerticalAlignment="Center" Width="72" Background="{x:Null}" Height="24" />
+
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="MusicName" VerticalAlignment="Top" Height="19" Width="356" Margin="10,57,0,0" Grid.Row="1" Background="#FF7AC174">
+            <TextBlock.RenderTransform>
+                <RotateTransform x:Name="MoveTransform" />
+            </TextBlock.RenderTransform>
+              <!-- Анимация текста. Перемещение вправо --> 
+        </TextBlock>
+
+
+
+
+    </Grid>
+</Window>
