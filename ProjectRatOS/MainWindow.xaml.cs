@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.IO;
-using Path = System.IO.Path;
 
 namespace ProjectRatOS
 {
@@ -25,9 +24,9 @@ namespace ProjectRatOS
     public partial class MainWindow : Window
     {
         static string curDir = Directory.GetCurrentDirectory();
-        static FileInfo fileInfo = new FileInfo(curDir);
-        static DirectoryInfo parentDir = fileInfo.Directory.Parent;
-        static string nowFolder = parentDir.FullName;
+        //static string fileInfo = Path.Combine(curDir, "\\MusicFolder");
+        //static DirectoryInfo parentDir = fileInfo.Directory.Parent;
+        //static string nowFolder = parentDir.FullName;
 
         public MainWindow()
         {
@@ -54,8 +53,18 @@ namespace ProjectRatOS
         }
         private void LoadMusic_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(Path.Combine(nowFolder, "MusicFolder"));
+            //var message = MessageBox.Show("Для добавления своей музыки нужно перейти в папку 'MusicFolder'", "ВНИМАНИЕ", MessageBoxButton.OK, MessageBoxImage.Information);
+            //int i = 0;
+            //if (message == MessageBoxResult.OK)
+            //{
+            //    i++;
+            //    if (i > 0)
+            //    {
+            //    }
+            //}
+            Process.Start(curDir);
             UpdateMusic();
+
         }
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
@@ -63,11 +72,19 @@ namespace ProjectRatOS
             Application.Current.Shutdown();
         }
 
-        private void UpdateMusic()//под вопросом
+        private void UpdateMusic()
         {
-            var countOfMusic = Path.Combine(nowFolder, "MusicFolder").Length;
-            MusicNameCount.Maximum = countOfMusic;
-            MusicCount.Content = $"Музыки в папке: {countOfMusic}";
+            //для проверки записывать $"{curDir}\\MusicFolder"(путь)
+            if (Directory.Exists($"{curDir}\\MusicFolder"))
+            {
+                DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
+                MusicNameCount.Maximum = dirExist.GetFiles().Count();
+                MusicCount.Content = $"Музыки в папке: {dirExist.GetFiles().Count()}";
+            }
+            else 
+            {
+                Directory.CreateDirectory($"{curDir}\\MusicFolder");
+            }
         }
     }
 }
