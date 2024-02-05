@@ -33,6 +33,7 @@ namespace ProjectRatOS
             InitializeComponent();
             MusicTimeCount.Minimum = 0;
             UpdateMusic();
+            mediaPlayWin.Volume = (double)VolumeSlider.Value;
         }
 
 
