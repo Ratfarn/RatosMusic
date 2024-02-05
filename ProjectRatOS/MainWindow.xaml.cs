@@ -31,7 +31,7 @@ namespace ProjectRatOS
         public MainWindow()
         {
             InitializeComponent();
-            MusicNameCount.Minimum = 0;
+            MusicTimeCount.Minimum = 0;
             UpdateMusic();
         }
 
@@ -53,38 +53,61 @@ namespace ProjectRatOS
         }
         private void LoadMusic_Click(object sender, RoutedEventArgs e)
         {
-            //var message = MessageBox.Show("Для добавления своей музыки нужно перейти в папку 'MusicFolder'", "ВНИМАНИЕ", MessageBoxButton.OK, MessageBoxImage.Information);
-            //int i = 0;
-            //if (message == MessageBoxResult.OK)
-            //{
-            //    i++;
-            //    if (i > 0)
-            //    {
-            //    }
-            //}
             Process.Start(curDir);
             UpdateMusic();
-
         }
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
         {
+            mediaPlayWin.Close();
             Application.Current.Shutdown();
         }
 
         private void UpdateMusic()
         {
-            //для проверки записывать $"{curDir}\\MusicFolder"(путь)
+            //для проверки существования $"{curDir}\\MusicFolder"(путь)
             if (Directory.Exists($"{curDir}\\MusicFolder"))
             {
                 DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
-                MusicNameCount.Maximum = dirExist.GetFiles().Count();
+                //MusicNameCount.Maximum = dirExist.GetFiles().Count();
                 MusicCount.Content = $"Музыки в папке: {dirExist.GetFiles().Count()}";
             }
             else 
             {
                 Directory.CreateDirectory($"{curDir}\\MusicFolder");
             }
+        }
+
+        private void pauseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayWin.Pause();
+        }
+
+        private void stopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayWin.Stop();
+        }
+
+        private void playBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try 
+            {
+                mediaPlayWin.Play();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("файл не подходит","ВНИМАНИЕ");
+            }
+        }
+
+        private void mediaPlayWin_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            MusicTimeCount.Maximum = mediaPlayWin.NaturalDuration.TimeSpan.TotalMilliseconds;
+        }
+
+        private void mediaPlayWin_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            mediaPlayWin.Stop();
         }
     }
 }
