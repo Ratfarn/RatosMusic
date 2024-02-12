@@ -23,7 +23,9 @@ namespace ProjectRatOS
     /// </summary>
     public partial class MainWindow : Window
     {
+        int i = 0;
         static string curDir = Directory.GetCurrentDirectory();
+        DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
         //static string fileInfo = Path.Combine(curDir, "\\MusicFolder");
         //static DirectoryInfo parentDir = fileInfo.Directory.Parent;
         //static string nowFolder = parentDir.FullName;
@@ -69,8 +71,6 @@ namespace ProjectRatOS
             //для проверки существования $"{curDir}\\MusicFolder"(путь)
             if (Directory.Exists($"{curDir}\\MusicFolder"))
             {
-                DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
-                //MusicNameCount.Maximum = dirExist.GetFiles().Count();
                 MusicCount.Content = $"Музыки в папке: {dirExist.GetFiles().Count()}";
             }
             else 
@@ -109,6 +109,18 @@ namespace ProjectRatOS
         private void mediaPlayWin_MediaEnded(object sender, RoutedEventArgs e)
         {
             mediaPlayWin.Stop();
+        }
+
+        private void plusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (i > (dirExist.GetFiles().Count() - 1))
+            { i = 0; }
+        }
+
+        private void minusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (i < 0)
+            { i = (dirExist.GetFiles().Count() - 1); }
         }
     }
 }
