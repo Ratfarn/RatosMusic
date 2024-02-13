@@ -25,7 +25,8 @@ namespace ProjectRatOS
     {
         int i = 0;
         static string curDir = Directory.GetCurrentDirectory();
-        DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
+        static DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
+        FileInfo[] strings = dirExist.GetFiles();
         //static string fileInfo = Path.Combine(curDir, "\\MusicFolder");
         //static DirectoryInfo parentDir = fileInfo.Directory.Parent;
         //static string nowFolder = parentDir.FullName;
@@ -93,6 +94,7 @@ namespace ProjectRatOS
         {
             try 
             {
+                mediaPlayWin.Source = new Uri(strings[i].FullName, UriKind.Absolute);
                 mediaPlayWin.Play();
             }
             catch (Exception)
@@ -113,12 +115,14 @@ namespace ProjectRatOS
 
         private void plusBtn_Click(object sender, RoutedEventArgs e)
         {
+            i++;
             if (i > (dirExist.GetFiles().Count() - 1))
             { i = 0; }
         }
 
         private void minusBtn_Click(object sender, RoutedEventArgs e)
         {
+            i--;
             if (i < 0)
             { i = (dirExist.GetFiles().Count() - 1); }
         }
