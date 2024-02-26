@@ -27,16 +27,15 @@ namespace ProjectRatOS
         static string curDir = Directory.GetCurrentDirectory();
         static DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
         FileInfo[] strings = dirExist.GetFiles();
-        //static string fileInfo = Path.Combine(curDir, "\\MusicFolder");
-        //static DirectoryInfo parentDir = fileInfo.Directory.Parent;
-        //static string nowFolder = parentDir.FullName;
+        MediaPlayer mediaPlay = new MediaPlayer();
+
 
         public MainWindow()
         {
             InitializeComponent();
             MusicTimeCount.Minimum = 0;
             UpdateMusic();
-            mediaPlayWin.Volume = (double)VolumeSlider.Value;
+            mediaPlay.Volume = (double)VolumeSlider.Value;
             numInQueue.Content = i;
         }
 
@@ -58,13 +57,35 @@ namespace ProjectRatOS
         }
         private void LoadMusic_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start($"{curDir}\\MusicFolder");
-            UpdateMusic();
+            //Process.Start($"{curDir}\\MusicFolder");
+
+            if (Directory.Exists($"{curDir}\\MusicFolder"))
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog
+                {
+                    Multiselect = false,
+                    DefaultExt = ".mp3"
+                };
+                bool? dialogOk = fileDialog.ShowDialog();
+                if (dialogOk == true)
+                {
+                    var musicFile = fileDialog.FileName;
+                    fileNameBlock.Text = fileDialog.SafeFileName;
+                    mediaPlay.Open(new Uri(musicFile));
+                }
+                MusicCount.Content = $"Музыки в папке: {dirExist.GetFiles().Count()}";
+                UpdateMusic();
+            }
+            else
+            {
+                Directory.CreateDirectory($"{curDir}\\MusicFolder");
+                UpdateMusic();
+            }
         }
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlayWin.Close();
+            mediaPlay.Close();
             Application.Current.Shutdown();
         }
 
@@ -83,35 +104,25 @@ namespace ProjectRatOS
 
         private void pauseBtn_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlayWin.Pause();
+            mediaPlay.Pause();
         }
 
         private void stopBtn_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlayWin.Stop();
+            mediaPlay.Stop();
         }
 
         private void playBtn_Click(object sender, RoutedEventArgs e)
         {
             try 
             {
-                mediaPlayWin.Source = new Uri(strings[i].FullName, UriKind.Absolute);
-                mediaPlayWin.Play();
+                //mediaPlay.Open(new Uri(strings[i].FullName, UriKind.Absolute));
+                mediaPlay.Play();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{ex}", "ВНИМАНИЕ");
             }
-        }
-
-        private void mediaPlayWin_MediaOpened(object sender, RoutedEventArgs e)
-        {
-            MusicTimeCount.Maximum = mediaPlayWin.NaturalDuration.TimeSpan.TotalMilliseconds;
-        }
-
-        private void mediaPlayWin_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            mediaPlayWin.Stop();
         }
 
         private void plusBtn_Click(object sender, RoutedEventArgs e)
@@ -120,6 +131,7 @@ namespace ProjectRatOS
             if (i > (dirExist.GetFiles().Count() - 1))
             { i = 0; }
             numInQueue.Content = i;
+            UpdateMusic();
         }
 
         private void minusBtn_Click(object sender, RoutedEventArgs e)
@@ -128,6 +140,7 @@ namespace ProjectRatOS
             if (i < 0)
             { i = (dirExist.GetFiles().Count() - 1); }
             numInQueue.Content = i;
+            UpdateMusic();
         }
     }
 }
