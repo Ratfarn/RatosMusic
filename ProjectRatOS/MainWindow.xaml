@@ -9,7 +9,7 @@
         WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" MouseLeftButtonDown="DragMe">
 
     <Border x:Name="BorPic" Background="Beige" CornerRadius="50" BorderBrush="Green" BorderThickness="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
-        <Grid Margin="0,1,0,-1">
+        <Grid Margin="1,1,-1,-1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="567*"/>
                 <ColumnDefinition Width="181*"/>
@@ -36,18 +36,18 @@
 
             <Button Background="Red" x:Name="exitBtn" Grid.Column="1" Width="23" Height="23" Margin="116,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="exitBtn_Click"/>
 
-            <Slider x:Name="MusicTimeCount" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,113,0,0" Width="548" TickPlacement="BottomRight" TickFrequency="1" Height="24"/>
+            <Slider x:Name="MusicTimeCount" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,175,0,0" Width="548" TickPlacement="BottomRight" TickFrequency="1" Height="24"/>
 
             <Label Content="RatosMusic" HorizontalAlignment="Left" VerticalAlignment="Top" Width="72" Background="{x:Null}" Height="24" Margin="338,-1,0,0" />
 
-            <Label x:Name="MusicCount" Content="Label" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Width="273"/>
+            <Label x:Name="MusicCount" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="272" Grid.Row="1"/>
             <Button x:Name="playBtn" Grid.Column="1" Content="воспроизвести" HorizontalAlignment="Left" Margin="51,155,0,0" VerticalAlignment="Top" Click="playBtn_Click"/>
             <Button x:Name="stopBtn" Grid.Column="1" Content="стоп" HorizontalAlignment="Left" Margin="96,130,0,0" VerticalAlignment="Top" Width="41" Click="stopBtn_Click"/>
             <Button x:Name="pauseBtn" Grid.Column="1" Content="пауза" HorizontalAlignment="Left" Margin="51,130,0,0" VerticalAlignment="Top" Width="40" Click="pauseBtn_Click"/>
 
-            <MediaElement Grid.Column="0" x:Name="mediaPlayWin" LoadedBehavior="Manual" UnloadedBehavior="Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Height="18" Width="543" Margin="10,85,0,0" Grid.Row="0" MediaOpened="mediaPlayWin_MediaOpened" MediaEnded="mediaPlayWin_MediaEnded"/>
-            <Button x:Name="plusBtn" Content="[=+=]" HorizontalAlignment="Left" Margin="55,173,0,0" VerticalAlignment="Top" Click="plusBtn_Click"/>
-            <Button x:Name="minusBtn" Content="[=-=]" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top" Click="minusBtn_Click"/>
+            <MediaElement Grid.Column="0" x:Name="mediaPlayWin" LoadedBehavior="Manual" UnloadedBehavior="Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Height="88" Width="543" Margin="10,70,0,0" Grid.Row="0" MediaOpened="mediaPlayWin_MediaOpened" MediaEnded="mediaPlayWin_MediaEnded"/>
+            <Button x:Name="plusBtn" Content="[=+=]" HorizontalAlignment="Left" Margin="54,41,0,0" VerticalAlignment="Top" Click="plusBtn_Click" Grid.Row="1"/>
+            <Button x:Name="minusBtn" Content="[=-=]" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Click="minusBtn_Click" Grid.Row="1"/>
             <Slider x:Name="VolumeSlider" HorizontalAlignment="Left" Margin="32,67,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Maximum="100" Minimum="0">
                 <Slider.RenderTransform>
                     <TransformGroup>
@@ -59,6 +59,7 @@
                 </Slider.RenderTransform>
             </Slider>
             <Label Grid.Column="1" Content="Громкость" HorizontalAlignment="Center" Margin="0,196,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+            <Label x:Name="numInQueue" HorizontalAlignment="Left" Margin="108,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="113" Height="23"/>
 
 
         </Grid>

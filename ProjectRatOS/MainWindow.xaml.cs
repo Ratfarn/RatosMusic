@@ -37,6 +37,7 @@ namespace ProjectRatOS
             MusicTimeCount.Minimum = 0;
             UpdateMusic();
             mediaPlayWin.Volume = (double)VolumeSlider.Value;
+            numInQueue.Content = i;
         }
 
 
@@ -57,7 +58,7 @@ namespace ProjectRatOS
         }
         private void LoadMusic_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(curDir);
+            Process.Start($"{curDir}\\MusicFolder");
             UpdateMusic();
         }
 
@@ -97,9 +98,9 @@ namespace ProjectRatOS
                 mediaPlayWin.Source = new Uri(strings[i].FullName, UriKind.Absolute);
                 mediaPlayWin.Play();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("файл не подходит","ВНИМАНИЕ");
+                MessageBox.Show($"{ex}", "ВНИМАНИЕ");
             }
         }
 
@@ -118,6 +119,7 @@ namespace ProjectRatOS
             i++;
             if (i > (dirExist.GetFiles().Count() - 1))
             { i = 0; }
+            numInQueue.Content = i;
         }
 
         private void minusBtn_Click(object sender, RoutedEventArgs e)
@@ -125,6 +127,7 @@ namespace ProjectRatOS
             i--;
             if (i < 0)
             { i = (dirExist.GetFiles().Count() - 1); }
+            numInQueue.Content = i;
         }
     }
 }
