@@ -26,9 +26,6 @@ namespace ProjectRatOS
         int i = 0;
         static string curDir = Directory.GetCurrentDirectory();
         static DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
-        FileInfo[] strings = dirExist.GetFiles();
-        MediaPlayer mediaPlay = new MediaPlayer();
-
 
         public MainWindow()
         {
@@ -39,6 +36,7 @@ namespace ProjectRatOS
             numInQueue.Content = i;
         }
 
+        MediaPlayer mediaPlay = new MediaPlayer();
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -57,30 +55,8 @@ namespace ProjectRatOS
         }
         private void LoadMusic_Click(object sender, RoutedEventArgs e)
         {
-            //Process.Start($"{curDir}\\MusicFolder");
-
-            if (Directory.Exists($"{curDir}\\MusicFolder"))
-            {
-                OpenFileDialog fileDialog = new OpenFileDialog
-                {
-                    Multiselect = false,
-                    DefaultExt = ".mp3"
-                };
-                bool? dialogOk = fileDialog.ShowDialog();
-                if (dialogOk == true)
-                {
-                    var musicFile = fileDialog.FileName;
-                    fileNameBlock.Text = fileDialog.SafeFileName;
-                    mediaPlay.Open(new Uri(musicFile));
-                }
-                MusicCount.Content = $"Музыки в папке: {dirExist.GetFiles().Count()}";
-                UpdateMusic();
-            }
-            else
-            {
-                Directory.CreateDirectory($"{curDir}\\MusicFolder");
-                UpdateMusic();
-            }
+            UpdateMusic();
+            Process.Start($"{curDir}\\MusicFolder");
         }
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
@@ -91,6 +67,7 @@ namespace ProjectRatOS
 
         private void UpdateMusic()
         {
+            chooseMusic.ItemsSource = dirExist.GetFiles();
             //для проверки существования $"{curDir}\\MusicFolder"(путь)
             if (Directory.Exists($"{curDir}\\MusicFolder"))
             {
@@ -125,22 +102,26 @@ namespace ProjectRatOS
             }
         }
 
-        private void plusBtn_Click(object sender, RoutedEventArgs e)
+        private void chooseMusic_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            i++;
-            if (i > (dirExist.GetFiles().Count() - 1))
-            { i = 0; }
-            numInQueue.Content = i;
-            UpdateMusic();
+            var item = chooseMusic.SelectedItem as string;
+            if (item != null)
+            {
+                mediaPlay.Open(new Uri(item));
+            }
         }
 
-        private void minusBtn_Click(object sender, RoutedEventArgs e)
-        {
-            i--;
-            if (i < 0)
-            { i = (dirExist.GetFiles().Count() - 1); }
-            numInQueue.Content = i;
-            UpdateMusic();
-        }
+        //OpenFileDialog fileDialog = new OpenFileDialog
+        //{
+        //    Multiselect = false,
+        //    DefaultExt = ".mp3"
+        //};
+        //bool? dialogOk = fileDialog.ShowDialog();
+        //        if (dialogOk == true)
+        //        {
+        //            var musicFile = fileDialog.FileName;
+        //fileNameBlock.Text = fileDialog.SafeFileName;
+        //            mediaPlay.Open(new Uri(musicFile));
+        //        }
     }
 }

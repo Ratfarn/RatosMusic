@@ -18,7 +18,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="LoadMusic" Content="Загрузить музыку" Grid.Column="1" HorizontalAlignment="Center" Margin="0,70,0,0" VerticalAlignment="Top" Height="30" Width="114" Click="LoadMusic_Click">
+            <Button x:Name="LoadMusic" Content="Загрузить музыку" Grid.Column="1" HorizontalAlignment="Center" Margin="0,74,0,0" VerticalAlignment="Top" Height="30" Width="114" Click="LoadMusic_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Template">
@@ -41,25 +41,22 @@
             <Label Content="RatosMusic" HorizontalAlignment="Left" VerticalAlignment="Top" Width="72" Background="{x:Null}" Height="24" Margin="338,-1,0,0" />
 
             <Label x:Name="MusicCount" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="272" Grid.Row="1"/>
-            <Button x:Name="playBtn" Grid.Column="1" Content="воспроизвести" HorizontalAlignment="Left" Margin="51,155,0,0" VerticalAlignment="Top" Click="playBtn_Click"/>
-            <Button x:Name="stopBtn" Grid.Column="1" Content="стоп" HorizontalAlignment="Left" Margin="96,130,0,0" VerticalAlignment="Top" Width="41" Click="stopBtn_Click"/>
-            <Button x:Name="pauseBtn" Grid.Column="1" Content="пауза" HorizontalAlignment="Left" Margin="51,130,0,0" VerticalAlignment="Top" Width="40" Click="pauseBtn_Click"/>
-            <Button x:Name="plusBtn" Content="[=+=]" HorizontalAlignment="Left" Margin="54,41,0,0" VerticalAlignment="Top" Click="plusBtn_Click" Grid.Row="1"/>
-            <Button x:Name="minusBtn" Content="[=-=]" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Click="minusBtn_Click" Grid.Row="1"/>
-            <Slider x:Name="VolumeSlider" HorizontalAlignment="Left" Margin="32,67,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Maximum="100" Minimum="0">
+            <Button x:Name="playBtn" Grid.Column="1" Content="воспроизвести" HorizontalAlignment="Center" Margin="0,154,0,0" VerticalAlignment="Top" Click="playBtn_Click"/>
+            <Button x:Name="stopBtn" Grid.Column="1" Content="стоп" HorizontalAlignment="Left" Margin="93,129,0,0" VerticalAlignment="Top" Width="41" Click="stopBtn_Click"/>
+            <Button x:Name="pauseBtn" Grid.Column="1" Content="пауза" HorizontalAlignment="Left" Margin="47,129,0,0" VerticalAlignment="Top" Width="40" Click="pauseBtn_Click"/>
+            <Slider x:Name="VolumeSlider" HorizontalAlignment="Left" Margin="32,67,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Grid.Column="1" Maximum="100" Minimum="0" RenderTransformOrigin="0.5,0.5">
                 <Slider.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
-                        <RotateTransform Angle="90"/>
+                        <RotateTransform Angle="-91"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Slider.RenderTransform>
             </Slider>
             <Label Grid.Column="1" Content="Громкость" HorizontalAlignment="Center" Margin="0,196,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-            <Label x:Name="numInQueue" HorizontalAlignment="Left" Margin="108,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="113" Height="23"/>
-            <TextBlock x:Name="fileNameBlock" HorizontalAlignment="Left" Margin="72,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="447"/>
             <Label Content="Файла" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="57"/>
+            <ComboBox x:Name="chooseMusic"  HorizontalAlignment="Left" Margin="72,143,0,0" VerticalAlignment="Top" Width="485" SelectionChanged="chooseMusic_SelectionChanged"/>
 
 
         </Grid>
