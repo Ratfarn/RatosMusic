@@ -5,20 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectRatOS"
         mc:Ignorable="d"
-        Title="RatOS" MinHeight="420" MaxHeight="420" MinWidth="750" MaxWidth="750" Closing="Window_Closing"
-        WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" MouseLeftButtonDown="DragMe">
+        Title="RatOS" MinHeight="420" MaxHeight="420" MinWidth="200" MaxWidth="200" Closing="Window_Closing"
+        WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" MouseLeftButtonDown="DragMe" Width="175">
 
-    <Border x:Name="BorPic" Background="Beige" CornerRadius="50" BorderBrush="Green" BorderThickness="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
-        <Grid Margin="1,1,-1,-1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="567*"/>
-                <ColumnDefinition Width="181*"/>
-            </Grid.ColumnDefinitions>
+    <Border x:Name="BorPic" Background="Beige" CornerRadius="50" BorderBrush="Green" BorderThickness="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,0,0">
+        <Grid Margin="1,1,-11,-1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="213*"/>
+                <RowDefinition Height="205*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="LoadMusic" Content="Загрузить музыку" Grid.Column="1" HorizontalAlignment="Center" Margin="0,74,0,0" VerticalAlignment="Top" Height="30" Width="114" Click="LoadMusic_Click">
+            <Button x:Name="LoadMusic" Content="Загрузить музыку" HorizontalAlignment="Left" Margin="43,169,0,0" VerticalAlignment="Top" Height="30" Width="114" Click="LoadMusic_Click" Grid.Row="1">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Template">
@@ -34,29 +30,9 @@
                 </Button.Style>
             </Button>
 
-            <Button Background="Red" x:Name="exitBtn" Grid.Column="1" Width="23" Height="23" Margin="116,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="exitBtn_Click"/>
+            <Button Background="Red" x:Name="exitBtn" Width="22" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Click="exitBtn_Click" Margin="140,0,0,0"/>
 
-            <Slider x:Name="MusicTimeCount" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,175,0,0" Width="548" TickPlacement="BottomRight" TickFrequency="1" Height="24"/>
-
-            <Label Content="RatosMusic" HorizontalAlignment="Left" VerticalAlignment="Top" Width="72" Background="{x:Null}" Height="24" Margin="338,-1,0,0" />
-
-            <Label x:Name="MusicCount" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="272" Grid.Row="1"/>
-            <Button x:Name="playBtn" Grid.Column="1" Content="воспроизвести" HorizontalAlignment="Center" Margin="0,154,0,0" VerticalAlignment="Top" Click="playBtn_Click"/>
-            <Button x:Name="stopBtn" Grid.Column="1" Content="стоп" HorizontalAlignment="Left" Margin="93,129,0,0" VerticalAlignment="Top" Width="41" Click="stopBtn_Click"/>
-            <Button x:Name="pauseBtn" Grid.Column="1" Content="пауза" HorizontalAlignment="Left" Margin="47,129,0,0" VerticalAlignment="Top" Width="40" Click="pauseBtn_Click"/>
-            <Slider x:Name="VolumeSlider" HorizontalAlignment="Left" Margin="32,67,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Grid.Column="1" Maximum="100" Minimum="0" RenderTransformOrigin="0.5,0.5">
-                <Slider.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-91"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Slider.RenderTransform>
-            </Slider>
-            <Label Grid.Column="1" Content="Громкость" HorizontalAlignment="Center" Margin="0,196,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-            <Label Content="Файла" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="57"/>
-            <ComboBox x:Name="chooseMusic"  HorizontalAlignment="Left" Margin="72,143,0,0" VerticalAlignment="Top" Width="485" SelectionChanged="chooseMusic_SelectionChanged"/>
+            <Label Content="RatosMusic" HorizontalAlignment="Left" VerticalAlignment="Top" Width="72" Background="{x:Null}" Height="24" Margin="28,0,0,0" />
 
 
         </Grid>

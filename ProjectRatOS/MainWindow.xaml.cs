@@ -23,7 +23,6 @@ namespace ProjectRatOS
     /// </summary>
     public partial class MainWindow : Window
     {
-        int i = 0;
         static string curDir = Directory.GetCurrentDirectory();
         static DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
 
@@ -32,11 +31,11 @@ namespace ProjectRatOS
             InitializeComponent();
             MusicTimeCount.Minimum = 0;
             UpdateMusic();
-            mediaPlay.Volume = (double)VolumeSlider.Value;
-            numInQueue.Content = i;
+            //mediaPlay.Volume = (double)VolumeSlider.Value;
+            mediaPlay.Volume = 1;
         }
 
-        MediaPlayer mediaPlay = new MediaPlayer();
+        MediaElement mediaPlay = new MediaElement{LoadedBehavior = MediaState.Manual};
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -91,15 +90,7 @@ namespace ProjectRatOS
 
         private void playBtn_Click(object sender, RoutedEventArgs e)
         {
-            try 
-            {
-                //mediaPlay.Open(new Uri(strings[i].FullName, UriKind.Absolute));
-                mediaPlay.Play();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"{ex}", "ВНИМАНИЕ");
-            }
+            mediaPlay.Play();
         }
 
         private void chooseMusic_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -107,7 +98,8 @@ namespace ProjectRatOS
             var item = chooseMusic.SelectedItem as string;
             if (item != null)
             {
-                mediaPlay.Open(new Uri(item));
+                mediaPlay.Source = new Uri(item, UriKind.RelativeOrAbsolute);
+                //mediaPlay.Play();
             }
         }
 
