@@ -29,7 +29,7 @@ namespace ProjectRatOS
         public MainWindow()
         {
             InitializeComponent();
-            MusicTimeCount.Minimum = 0;
+            //MusicTimeCount.Minimum = 0;
             UpdateMusic();
             //mediaPlay.Volume = (double)VolumeSlider.Value;
             mediaPlay.Volume = 1;

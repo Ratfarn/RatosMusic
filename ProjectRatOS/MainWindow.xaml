@@ -33,6 +33,8 @@
             <Button Background="Red" x:Name="exitBtn" Width="22" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Click="exitBtn_Click" Margin="140,0,0,0"/>
 
             <Label Content="RatosMusic" HorizontalAlignment="Left" VerticalAlignment="Top" Width="72" Background="{x:Null}" Height="24" Margin="28,0,0,0" />
+            <ComboBox x:Name="chooseMusic" HorizontalAlignment="Left" Margin="4,142,0,0" Grid.Row="1" VerticalAlignment="Top" Width="188" SelectionChanged="chooseMusic_SelectionChanged"/>
+            <Label x:Name="MusicCount"  Content="Label" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top" Width="94"/>
 
 
         </Grid>
