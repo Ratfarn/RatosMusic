@@ -103,5 +103,10 @@ namespace ProjectRatOS
         {
             playMusic.Stop();
         }
+
+        private void volumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            playMusic.Volume = volumeSlider.Value;
+        }
     }
 }
