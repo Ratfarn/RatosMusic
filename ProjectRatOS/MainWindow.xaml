@@ -14,7 +14,7 @@
                 <RowDefinition Height="213*"/>
                 <RowDefinition Height="205*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="LoadMusic" Content="Загрузить музыку" HorizontalAlignment="Left" Margin="43,169,0,0" VerticalAlignment="Top" Height="30" Width="114" Click="LoadMusic_Click" Grid.Row="1">
+            <Button x:Name="LoadMusic" Content="Загрузить музыку" HorizontalAlignment="Center" Margin="0,169,0,0" VerticalAlignment="Top" Height="30" Width="114" Click="LoadMusic_Click" Grid.Row="1">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Template">
@@ -30,11 +30,25 @@
                 </Button.Style>
             </Button>
 
-            <Button Background="Red" x:Name="exitBtn" Width="22" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Click="exitBtn_Click" Margin="140,0,0,0"/>
+            <Button Background="Red" x:Name="exitBtn" Width="22" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Click="exitBtn_Click" Margin="132,3,0,0"/>
 
-            <Label Content="RatosMusic" HorizontalAlignment="Left" VerticalAlignment="Top" Width="72" Background="{x:Null}" Height="24" Margin="28,0,0,0" />
+            <Label Content="RatosMusic" HorizontalAlignment="Left" VerticalAlignment="Top" Width="72" Background="{x:Null}" Height="24" Margin="30,0,0,0" />
             <ComboBox x:Name="chooseMusic" HorizontalAlignment="Left" Margin="4,142,0,0" Grid.Row="1" VerticalAlignment="Top" Width="188" SelectionChanged="chooseMusic_SelectionChanged"/>
-            <Label x:Name="MusicCount"  Content="Label" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top" Width="94"/>
+            <Label x:Name="MusicCount"  Content="Label" HorizontalAlignment="Left" Margin="4,177,0,0" VerticalAlignment="Top" Width="188"/>
+            <Slider HorizontalAlignment="Left" Margin="-42,65,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+                <Slider.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-91.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Slider.RenderTransform>
+            </Slider>
+            <Button x:Name="playBtn"  Content="Play" HorizontalAlignment="Left" Margin="124,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="69" Width="68" Click="playBtn_Click"/>
+            <Button x:Name="pauseBtn" Content="Pause" HorizontalAlignment="Left" Margin="79,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="35" Width="40" Click="pauseBtn_Click"/>
+            <Button x:Name="StopBtn" Content="Stop" HorizontalAlignment="Left" Margin="79,50,0,0" Grid.Row="1" VerticalAlignment="Top" Height="29" Width="40" Click="StopBtn_Click"/>
+
 
 
         </Grid>

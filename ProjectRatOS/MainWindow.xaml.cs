@@ -25,17 +25,13 @@ namespace ProjectRatOS
     {
         static string curDir = Directory.GetCurrentDirectory();
         static DirectoryInfo dirExist = new DirectoryInfo($"{curDir}\\MusicFolder");
+        MediaPlayer playMusic = new MediaPlayer();
 
         public MainWindow()
         {
             InitializeComponent();
-            //MusicTimeCount.Minimum = 0;
             UpdateMusic();
-            //mediaPlay.Volume = (double)VolumeSlider.Value;
-            mediaPlay.Volume = 1;
         }
-
-        MediaElement mediaPlay = new MediaElement{LoadedBehavior = MediaState.Manual};
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -60,7 +56,6 @@ namespace ProjectRatOS
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlay.Close();
             Application.Current.Shutdown();
         }
 
@@ -78,19 +73,10 @@ namespace ProjectRatOS
             }
         }
 
-        private void pauseBtn_Click(object sender, RoutedEventArgs e)
+        void MusicStart(string musicPath)
         {
-            mediaPlay.Pause();
-        }
-
-        private void stopBtn_Click(object sender, RoutedEventArgs e)
-        {
-            mediaPlay.Stop();
-        }
-
-        private void playBtn_Click(object sender, RoutedEventArgs e)
-        {
-            mediaPlay.Play();
+            playMusic.Open(new Uri(musicPath));
+            playMusic.Play();
         }
 
         private void chooseMusic_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -98,22 +84,24 @@ namespace ProjectRatOS
             var item = chooseMusic.SelectedItem as string;
             if (item != null)
             {
-                mediaPlay.Source = new Uri(item, UriKind.RelativeOrAbsolute);
-                //mediaPlay.Play();
+                string musicPath = item.ToString();
+                MusicStart(musicPath);
             }
         }
 
-        //OpenFileDialog fileDialog = new OpenFileDialog
-        //{
-        //    Multiselect = false,
-        //    DefaultExt = ".mp3"
-        //};
-        //bool? dialogOk = fileDialog.ShowDialog();
-        //        if (dialogOk == true)
-        //        {
-        //            var musicFile = fileDialog.FileName;
-        //fileNameBlock.Text = fileDialog.SafeFileName;
-        //            mediaPlay.Open(new Uri(musicFile));
-        //        }
+        private void playBtn_Click(object sender, RoutedEventArgs e)
+        {
+            playMusic.Play();
+        }
+
+        private void pauseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            playMusic.Pause();
+        }
+
+        private void StopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            playMusic.Stop();
+        }
     }
 }
