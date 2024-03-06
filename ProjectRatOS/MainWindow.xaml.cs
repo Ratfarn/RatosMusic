@@ -73,21 +73,25 @@ namespace ProjectRatOS
             }
         }
 
-        void MusicStart(string musicPath)
-        {
-            playMusic.Open(new Uri(musicPath));
-            playMusic.Play();
-        }
-
         private void chooseMusic_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = chooseMusic.SelectedItem as string;
-            if (item != null)
+            try
             {
-                string musicPath = item.ToString();
-                MusicStart(musicPath);
+                var item = chooseMusic.SelectedItem.ToString();
+                if (item != null)
+                {
+                    //string musicPath = $"{curDir}\\MusicFolder\\{item}";
+                    string musicPath = $"{dirExist}\\{item}";
+                    //string musicPath = item.ToString();
+                    playMusic.Open(new Uri(musicPath));
+                    //playMusic.Play();
+                }
             }
+            catch (Exception ex)
+            { MessageBox.Show(ex.ToString()); }
         }
+
+        
 
         private void playBtn_Click(object sender, RoutedEventArgs e)
         {
