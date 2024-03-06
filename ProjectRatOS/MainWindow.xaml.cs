@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Diagnostics;
-using Microsoft.Win32;
 using System.IO;
 
 namespace ProjectRatOS
@@ -62,6 +53,7 @@ namespace ProjectRatOS
         private void UpdateMusic()
         {
             chooseMusic.ItemsSource = dirExist.GetFiles();
+
             //для проверки существования $"{curDir}\\MusicFolder"(путь)
             if (Directory.Exists($"{curDir}\\MusicFolder"))
             {
@@ -80,11 +72,8 @@ namespace ProjectRatOS
                 var item = chooseMusic.SelectedItem.ToString();
                 if (item != null)
                 {
-                    //string musicPath = $"{curDir}\\MusicFolder\\{item}";
                     string musicPath = $"{dirExist}\\{item}";
-                    //string musicPath = item.ToString();
                     playMusic.Open(new Uri(musicPath));
-                    //playMusic.Play();
                 }
             }
             catch (Exception ex)
